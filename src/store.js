@@ -15,7 +15,7 @@ export default new Vuex.Store({
     login (context, dataForSend) {
       console.log(window.location.origin)
       return axios({
-        method: 'GET',
+        method: 'POST',
         url: `${this.state.getGlobalLocation}/api/login`,
         data: dataForSend
       })
@@ -23,7 +23,7 @@ export default new Vuex.Store({
     registration (context, dataForSend) {
       console.log(window.location.origin)
       return axios({
-        method: 'GET',
+        method: 'POST',
         url: `${this.state.getGlobalLocation}/api/registration`,
         data: dataForSend
       })
