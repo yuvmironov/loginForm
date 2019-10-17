@@ -30,6 +30,13 @@ function getCookie (name) {
   ))
   return matches ? decodeURIComponent(matches[1]) : undefined
 }
+
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1
+  })
+}
+
 export default {
   data () {
     return {
@@ -63,6 +70,7 @@ export default {
       this.$store.dispatch('logOut', dataForSend)
         .then(response => {
           if (response.data.status === 200) {
+            deleteCookie('session')
             this.$route.push('home')
           } else {
             alert('Выход не удался')

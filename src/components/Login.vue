@@ -40,23 +40,18 @@ export default {
   methods: {
     login (event) {
       event.preventDefault()
-      let data = {
+      let dataForSend = {
         login: document.getElementById('Login').value,
         password: document.getElementById('Password').value
       }
-      if (!!data.login && !!data.password) {
-        this.$store.dispatch('login', data)
-          .then(response => {
-            if (response.status === 200) {
-              document.cookie = `session=${response.session}; max-age=${response.tm / 1000}`
-              this.$route.push('lk')
-            } else {
-              alert(`Логин не удался`)
-            }
-          })
-          .catch(err => {
-            alert(`Логин не удался`)
-          })
+      if (!!dataForSend.login && !!dataForSend.password) {
+        this.$store.dispatch('login', dataForSend)
+        .then(response => {
+          if (response.data.status === 200) {
+            document.cookie = `session=${response.data.session}; max-age=${response.data.tm / 1000}`
+            this.$router.push('lk')
+          }
+        })
       } else {
         alert('Введены не все данные')
       }
